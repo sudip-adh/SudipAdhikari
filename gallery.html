@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | Personal Website</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">My Gallery</div>
+    <ul class="nav-menu">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="index.html#about" class="nav-link">About</a></li>
+      <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+      <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+    </ul>
+  </nav>
+
+  <!-- GALLERY HEADER -->
+  <header class="header" style="background-image: url('assets/gallery/img1.jpg');">
+    <div class="header-overlay"></div>
+    <div class="header-content">
+      <h1>Photo Gallery</h1>
+      <p>A glimpse of my academic, technical, and personal moments</p>
+    </div>
+  </header>
+
+  <!-- GALLERY SECTION -->
+  <section class="section light" id="gallery">
+    <div class="section-title">
+      <h2>Gallery</h2>
+      <p>Hover over images to explore</p>
+    </div>
+
+    <div class="gallery-grid">
+
+      <!-- Image 1 -->
+      <div class="gallery-item">
+        <img src="assets/gallery/img1.jpg" alt="Gallery Image 1">
+      </div>
+
+      <!-- Image 2 -->
+      <div class="gallery-item">
+        <img src="assets/gallery/img2.jpg" alt="Gallery Image 2">
+      </div>
+
+      <!-- Image 3 -->
+      <div class="gallery-item">
+        <img src="assets/gallery/img3.jpg" alt="Gallery Image 3">
+      </div>
+
+      <!-- Image 4 -->
+      <div class="gallery-item">
+        <img src="assets/gallery/img4.jpg" alt="Gallery Image 4">
+      </div>
+
+      <!-- Image 5 -->
+      <div class="gallery-item">
+        <img src="assets/gallery/img5.jpg" alt="Gallery Image 5">
+      </div>
+
+      <!-- Image 6 -->
+      <div class="gallery-item">
+        <img src="assets/gallery/img6.jpg" alt="Gallery Image 6">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BACK TO TOP -->
+  <button id="backToTop">↑</button>
+
+  <!-- FOOTER -->
+<footer>
+  <div class="footer-content">
+    
+    <div class="social-links">
+      <a href="https://www.facebook.com/sudip.adhikari010/" target="_blank" title="Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      
+      <a href="https://www.linkedin.com/in/sudip-adhikari-9448a7336/" target="_blank" title="LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+
+      <a href="mailto:sudipadh0410@gmail.com" title="Email">
+        <i class="fas fa-envelope"></i>
+      </a>
+
+      <a href="https://github.com/sudip-adh" target="_blank" title="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+
+    <p>© 2025 Sudip Adhikari • Electrical Engineering</p>
+  </div>
+</footer>
+  <!-- OPTIONAL JS (scroll progress + back to top) -->
+  <script>
+    const progressBar = document.getElementById("scroll-progress");
+    const backToTop = document.getElementById("backToTop");
+
+    window.addEventListener("scroll", () => {
+      const scrollTop = document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = (scrollTop / scrollHeight) * 100;
+      progressBar.style.width = progress + "%";
+
+      backToTop.classList.toggle("visible", scrollTop > 300);
+    });
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+
+</body>
+</html>
