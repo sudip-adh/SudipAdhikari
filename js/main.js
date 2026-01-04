@@ -7,7 +7,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =======================================================
-     NAVBAR AUTO-HIDE ON SCROLL
+     NAVBAR AUTO-HIDE ON SCROLL (DESKTOP ONLY)
   ======================================================= */
   let lastScrollTop = 0;
   const navbar = document.querySelector(".navbar");
@@ -17,14 +17,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    if (scrollTop > lastScrollTop && scrollTop > 100) {
-      navbar.classList.add("nav-hide");
+    if (window.innerWidth > 768) {
+      if (scrollTop > lastScrollTop && scrollTop > 100) {
+        navbar.classList.add("nav-hide");
+      } else {
+        navbar.classList.remove("nav-hide");
+      }
     } else {
       navbar.classList.remove("nav-hide");
     }
 
     lastScrollTop = Math.max(scrollTop, 0);
   });
+
+  /* ===============================
+   MOBILE HAMBURGER MENU (FINAL)
+================================ */
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".nav-menu");
+const navLinks = document.querySelectorAll(".nav-link");
+
+if (hamburger && navMenu) {
+
+  hamburger.addEventListener("click", () => {
+    navMenu.classList.toggle("show");
+  });
+
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      navMenu.classList.remove("show");
+    });
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      navMenu.classList.remove("show");
+    }
+  });
+}
 
 
   /* =======================================================
@@ -53,9 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
   /* =======================================================
-     SMOOTH SCROLL FOR NAV LINKS
+     SMOOTH SCROLL FOR INTERNAL NAV LINKS
   ======================================================= */
   document.querySelectorAll(".nav-link").forEach(link => {
     link.addEventListener("click", e => {
@@ -70,7 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-
 
   /* =======================================================
      FADE + SLIDE ANIMATION ON SCROLL
@@ -92,7 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     animatedElements.forEach(el => observer.observe(el));
   }
-
 
   /* =======================================================
      HEADER BACKGROUND IMAGE SLIDER
@@ -120,9 +147,8 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(changeHeaderBg, 5000);
   }
 
-
   /* =======================================================
-     TYPEWRITER EFFECT (ABOUT SECTION)
+     TYPEWRITER EFFECT
   ======================================================= */
   const typeTarget = document.querySelector(".typewriter");
   const typeText = "Sudip Adhikari";

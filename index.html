@@ -7,12 +7,34 @@
 
   <title>Sudip Adhikari | Electrical Engineer</title>
 
+    <!-- FAVICON by chatgpt-->
+<link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+
+           
+
+<!-- FAVICON 
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">     by chatgpt-->
+ <!-- APPLE TOUCH ICON -->
+
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+
+
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Main CSS -->
+   <script src="js/main.js" defer></script>
+
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+
   
 </head>
 
@@ -23,12 +45,24 @@
 ================================ -->
 <div id="scroll-progress"></div>
 
+
+
+
 <!-- ===============================
      NAVIGATION BAR
 ================================ -->
 <nav class="navbar">
+
   <div class="logo">Sudip</div>
-  <ul class="nav-menu">
+
+  <!-- 🔥 HAMBURGER (must be BEFORE nav-menu for z-index & click reliability) -->
+  <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <ul class="nav-menu" id="navMenu">
     <li><a class="nav-link" href="#about">About</a></li>
     <li><a class="nav-link" href="#publications">Publications</a></li>
     <li><a class="nav-link" href="#projects">Projects</a></li>
@@ -36,7 +70,9 @@
     <li><a class="nav-link" href="blogs.html">Blogs</a></li>
     <li><a class="nav-link" href="gallery.html">Gallery</a></li>
   </ul>
+
 </nav>
+
 
 <!-- ===============================
      HEADER / HERO SECTION
@@ -57,14 +93,13 @@
 
     <div class="about-image">
       <img src="assets/images/profile.jpg" alt="Sudip Adhikari">
-
     </div>
 
     <div class="about-text">
       <h2 class="typewriter"></h2>
       <p>
         I am an <strong>Electrical Engineering student</strong> with a strong
-        interest in <em>transmission systems , renewable energy, and modern electrical
+        interest in <em>transmission systems, renewable energy, and modern electrical
         technologies</em>. I enjoy applying engineering fundamentals to
         real-world problems through academic projects, research, and
         hands-on technical work.
@@ -84,22 +119,22 @@
   </div>
 
   <div class="card-grid">
-    <div class="card">
+
+    <a href="javascript:void(0)" class="card">
       <h3>Power Distribution Optimization</h3>
-      <p>Study on improving efficiency and reliability in electrical
-         distribution networks.</p>
-    </div>
+      <p>Study on improving efficiency and reliability in electrical distribution networks.</p>
+    </a>
 
-    <div class="card">
+    <a href="javascript:void(0)" class="card">
       <h3>Renewable Integration in Nepalese Grid</h3>
-      <p>Analysis of challenges and solutions for integrating renewables
-         into the national grid.</p>
-    </div>
+      <p>Analysis of challenges and solutions for integrating renewables into the national grid.</p>
+    </a>
 
-    <div class="card">
+    <a href="javascript:void(0)" class="card">
       <h3>Automation in Electrical Manufacturing</h3>
       <p>Exploration of automation techniques in modern electrical industries.</p>
-    </div>
+    </a>
+
   </div>
 </section>
 
@@ -113,21 +148,22 @@
   </div>
 
   <div class="card-grid">
-    <div class="card">
-      <h3>Industrial Illumination Design</h3>
-      <p>Lighting design based on standards, efficiency, and safety
-         considerations.</p>
-    </div>
 
-    <div class="card">
+    <a href="javascript:void(0)" class="card">
+      <h3>Industrial Illumination Design</h3>
+      <p>Lighting design based on standards, efficiency, and safety considerations.</p>
+    </a>
+
+    <a href="javascript:void(0)" class="card">
       <h3>Hydropower Plant Layout Planning</h3>
       <p>Conceptual design and layout planning of a small hydropower station.</p>
-    </div>
+    </a>
 
-    <div class="card">
+    <a href="javascript:void(0)" class="card">
       <h3>Power System Protection Study</h3>
       <p>Analysis of relay coordination and fault protection schemes.</p>
-    </div>
+    </a>
+
   </div>
 </section>
 
@@ -140,10 +176,9 @@
   </div>
 
   <p style="max-width:900px; margin:auto; text-align:center;">
-    Academic projects, technical workshops, engineering seminars, WIA X CIT Programme, CR throughout 
-    the Bachelors,Volunteering, 
-    and hands-on exposure through institutional programs and
-    collaborative learning initiatives.
+    Academic projects, technical workshops, engineering seminars, WIA X CIT Programme,
+    CR throughout the Bachelors, volunteering, and hands-on exposure through institutional
+    programs and collaborative learning initiatives.
   </p>
 </section>
 
@@ -152,12 +187,12 @@
 ================================ -->
 <footer>
   <div class="footer-content">
-    
+
     <div class="social-links">
       <a href="https://www.facebook.com/sudip.adhikari010/" target="_blank" title="Facebook">
         <i class="fab fa-facebook-f"></i>
       </a>
-      
+
       <a href="https://www.linkedin.com/in/sudip-adhikari-9448a7336/" target="_blank" title="LinkedIn">
         <i class="fab fa-linkedin-in"></i>
       </a>
@@ -181,9 +216,8 @@
 <button id="backToTop">↑</button>
 
 <!-- ===============================
-     OPTIONAL JS
+     JS
 ================================ -->
-<script src="js/main.js"></script>
 
 </body>
 </html>

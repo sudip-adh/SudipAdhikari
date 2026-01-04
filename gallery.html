@@ -5,11 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gallery | Personal Website</title>
 
+
+  <!-- FAVICON by chatgpt-->
+<link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+
+           
+
+<!-- FAVICON 
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">     by chatgpt-->
+ <!-- APPLE TOUCH ICON -->
+
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  
 
   <!-- Main CSS -->
   <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -19,15 +39,27 @@
   <div id="scroll-progress"></div>
 
   <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="logo">My Gallery</div>
-    <ul class="nav-menu">
-      <li><a href="index.html" class="nav-link">Home</a></li>
-      <li><a href="index.html#about" class="nav-link">About</a></li>
-      <li><a href="index.html#projects" class="nav-link">Projects</a></li>
-      <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-    </ul>
-  </nav>
+ <nav class="navbar">
+  <div class="logo">
+    <a href="index.html">Sudip</a>
+  </div>
+
+  <button class="hamburger" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <ul class="nav-menu">
+    <li><a class="nav-link" href="index.html#about">About</a></li>
+    <li><a class="nav-link" href="index.html#publications">Publications</a></li>
+    <li><a class="nav-link" href="index.html#projects">Projects</a></li>
+    <li><a class="nav-link" href="index.html#experience">Experience</a></li>
+    <li><a class="nav-link" href="blogs.html">Blogs</a></li>
+    <li><a class="nav-link" href="gallery.html">Gallery</a></li>
+  </ul>
+</nav>
+
 
   <!-- GALLERY HEADER -->
   <header class="header" style="background-image: url('assets/gallery/img1.jpg');">
