@@ -1,142 +1,448 @@
-/* =========================================================
-   GLOBAL RESET & VARIABLES
-========================================================= */
+/* ==========================================================================
+   MASTER STYLESHEET: Sudip Adhikari Portfolio
+   ==========================================================================
+   AUTHOR:      Sudip Adhikari
+   DATE:        2025
+   DESCRIPTION: Complete, production-grade CSS with System Dark Mode,
+                Liquid Glass Mobile Navigation, and Responsive Layouts.
+   
+   TABLE OF CONTENTS:
+   --------------------------------------------------------------------------
+   1.  GLOBAL VARIABLES (Theming System)
+   2.  RESET & BASE STYLES
+   3.  TYPOGRAPHY SYSTEM
+   4.  LAYOUT UTILITIES & GRID SYSTEM
+   5.  ANIMATIONS (Keyframes)
+   6.  COMPONENT: SCROLL PROGRESS BAR
+   7.  COMPONENT: NAVBAR (Desktop & Mobile Base)
+   8.  COMPONENT: HAMBURGER MENU (Animation)
+   9.  COMPONENT: MOBILE DRAWER (Liquid Glass Effect)
+   10. HEADER / HERO SECTION
+   11. SECTION: ABOUT ME (Profile & Typewriter)
+   12. SECTION: PUBLICATIONS (Cards)
+   13. SECTION: PROJECTS (Cards)
+   14. SECTION: EXPERIENCE (Timeline/Text)
+   15. COMPONENT: BLOG CARDS
+   16. SECTION: GALLERY (Grid & Captions)
+   17. COMPONENT: BACK TO TOP BUTTON
+   18. FOOTER SECTION
+   19. SYSTEM DARK MODE OVERRIDES (The "Night" Theme)
+   20. PRINT STYLES
+   ========================================================================== */
 
+
+/* ==========================================================================
+   1. GLOBAL VARIABLES (Theming System)
+   ========================================================================== */
 :root {
-  --primary-color: #0b3c5d;
-  --secondary-color: #328cc1;
-  --accent-color: #d9b310;
+  /* -----------------------------------------------------------------------
+     Color Palette (Light Mode Default)
+     ----------------------------------------------------------------------- */
+  --primary-color:       #0b3c5d;  /* Deep Engineering Blue */
+  --primary-hover:       #082d46;  /* Darker shade for interactions */
+  --secondary-color:     #328cc1;  /* Bright Accent Blue */
+  --secondary-soft:      rgba(50, 140, 193, 0.15); /* Soft accent background */
+  --accent-color:        #d9b310;  /* Gold/Yellow Highlight */
 
-  --text-dark: #1d2731;
-  --text-light: #6c757d;
+  --text-dark:           #1d2731;  /* Main Body Text */
+  --text-medium:         #4a5568;  /* Secondary Text */
+  --text-light:          #6c757d;  /* Muted Text */
+  --text-inverse:        #ffffff;  /* Text on dark backgrounds */
 
-  --bg-light: #ffffff;
-  --bg-soft: #f4f7fb;
-  --bg-dark: #e9eff5;
+  --bg-light:            #ffffff;  /* Main Page Background */
+  --bg-soft:             #f4f7fb;  /* Alternating Section Background */
+  --bg-dark:             #e9eff5;  /* Deep Background */
+  --bg-card:             #ffffff;  /* Card Background */
+  --bg-glass:            rgba(255, 255, 255, 0.85); /* Navbar Glass */
 
-  --radius: 8px;
-  --transition: all 0.3s ease;
-  --section-padding: 80px 8%;
+  /* -----------------------------------------------------------------------
+     Borders & Shadows
+     ----------------------------------------------------------------------- */
+  --border-color:        rgba(0, 0, 0, 0.08);
+  --shadow-sm:           0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md:           0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg:           0 15px 35px rgba(0, 0, 0, 0.12);
+  --shadow-blue:         0 10px 30px rgba(11, 60, 93, 0.2);
+
+  /* -----------------------------------------------------------------------
+     Spacing & Layout
+     ----------------------------------------------------------------------- */
+  --nav-height:          70px;
+  --section-padding:     80px 8%;
+  --container-width:     1200px;
+  --radius-sm:           6px;
+  --radius-md:           12px;
+  --radius-lg:           20px;
+  --radius-round:        50%;
+
+  /* -----------------------------------------------------------------------
+     Transitions
+     ----------------------------------------------------------------------- */
+  --transition-fast:     0.15s ease;
+  --transition-normal:   0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-slow:     0.5s ease;
+  --transition-bounce:   0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* -----------------------------------------------------------------------
+     Z-Indices (Layer Management)
+     ----------------------------------------------------------------------- */
+  --z-negative:         -1;
+  --z-normal:            1;
+  --z-overlay:           100;
+  --z-drawer:            1200;
+  --z-navbar:            2000;
+  --z-hamburger:         2100;
+  --z-progress:          9999;
+  --z-modal:             3000;
 }
 
-* {
+
+/* ==========================================================================
+   2. RESET & BASE STYLES
+   ========================================================================== */
+
+/* Box Sizing Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  /* Prevent mobile tap highlight rectangles */
+  -webkit-tap-highlight-color: transparent;
 }
 
+/* Smooth Scrolling for Anchor Links */
 html {
   scroll-behavior: smooth;
-}
-
-body {
-  font-family: "Poppins", system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.65;
-  background: var(--bg-light);
-  color: var(--text-dark);
   width: 100%;
   overflow-x: hidden;
 }
 
-.navbar {
-  position: fixed;
-  z-index: 10000; /* above header overlay */
-
-}
-.header-overlay {
-  pointer-events: none;
-}
-
-
-
-/* =========================================================
-   TYPOGRAPHY
-========================================================= */
-
-h1, h2, h3 {
-  color: var(--primary-color);
-  font-weight: 700;
-  line-height: 1.15;
-}
-
-h1 { font-size: 3.2rem; }
-h2 { font-size: 2.2rem; margin-bottom: 20px; }
-h3 { font-size: 1.3rem; margin-bottom: 10px; }
-
-p {
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--text-light);
-}
-
-strong {
-  font-weight: 600;
+/* Body Defaults */
+body {
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
   color: var(--text-dark);
+  background-color: var(--bg-light);
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
-em {
-  font-style: italic;
-  color: var(--primary-color);
+/* Media Defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  user-select: none;
 }
 
+/* List Defaults */
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Link Defaults */
 a {
   text-decoration: none;
   color: inherit;
-  transition: var(--transition);
+  transition: color var(--transition-fast);
+  cursor: pointer;
 }
 
-/* =========================================================
-   NAVBAR
-========================================================= */
+/* Form Element Defaults */
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+
+/* ==========================================================================
+   3. TYPOGRAPHY SYSTEM
+   ========================================================================== */
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  transition: color var(--transition-normal);
+}
+
+/* Hero Heading */
+h1 {
+  font-size: 3.5rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+/* Section Headings */
+h2 {
+  font-size: 2.5rem;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+/* Card Headings */
+h3 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+/* Paragraphs */
+p {
+  margin-bottom: 1.5rem;
+  color: var(--text-light);
+  font-weight: 400;
+  transition: color var(--transition-normal);
+}
+
+/* Emphasis */
+strong {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+em {
+  color: var(--secondary-color);
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* Selection Color */
+::selection {
+  background: var(--secondary-color);
+  color: #fff;
+}
+
+
+/* ==========================================================================
+   4. LAYOUT UTILITIES & GRID SYSTEM
+   ========================================================================== */
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Flex Utilities */
+.d-flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+/* Spacing Utilities */
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.mt-3 { margin-top: 3rem; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.mb-3 { margin-bottom: 3rem; }
+
+/* Text Alignment */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+/* Visibility */
+.hidden-desktop {
+  display: none;
+}
+
+
+/* ==========================================================================
+   5. ANIMATIONS (Keyframes)
+   ========================================================================== */
+
+/* Fade In Up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade In */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Liquid Drift (for Glass Buttons) */
+@keyframes liquidDrift {
+  0% {
+    transform: translate(-5px, -5px) scale(1);
+  }
+  50% {
+    transform: translate(5px, 5px) scale(1.05);
+  }
+  100% {
+    transform: translate(-5px, -5px) scale(1);
+  }
+}
+
+/* Pulse Glow */
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(50, 140, 193, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(50, 140, 193, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(50, 140, 193, 0); }
+}
+
+/* Typewriter Blink */
+@keyframes blinkCursor {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: var(--secondary-color); }
+}
+
+/* Utility Classes for Animation */
+.animate {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ==========================================================================
+   6. COMPONENT: SCROLL PROGRESS BAR
+   ========================================================================== */
+/* Critically important: 
+   High Z-index to ensure visibility over navbar and other elements.
+   Must work in both light and dark mode.
+*/
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background: var(--secondary-color);
+  z-index: var(--z-progress);
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px rgba(50, 140, 193, 0.5);
+}
+
+
+/* ==========================================================================
+   7. COMPONENT: NAVBAR (Desktop & Mobile Base)
+   ========================================================================== */
 
 .navbar {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
-  padding: 1rem 8%;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  height: var(--nav-height);
+  padding: 0 8%;
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 1000;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  transition: transform 0.3s ease;
+  
+  /* Glassmorphism Effect */
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  box-shadow: var(--shadow-sm);
+  z-index: var(--z-navbar);
+  transition: transform var(--transition-normal), background var(--transition-normal);
 }
 
+/* Auto-Hide State (Added via JS) */
 .navbar.nav-hide {
   transform: translateY(-100%);
 }
 
+/* Brand / Logo */
 .logo {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--primary-color);
+  letter-spacing: -0.5px;
+  position: relative;
+  z-index: var(--z-hamburger) + 1;
 }
 
+.logo a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Desktop Menu Links */
 .nav-menu {
-  list-style: none;
   display: flex;
   gap: 30px;
+  list-style: none;
 }
 
 .nav-link {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 500;
-  position: relative;
   color: var(--text-dark);
+  padding: 8px 4px;
+  position: relative;
+  transition: color var(--transition-fast);
 }
 
+/* Blue Flow Line Animation on Hover */
 .nav-link::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -6px;
+  bottom: 0;
   width: 0;
   height: 2px;
-  background: var(--secondary-color);
-  transition: width 0.3s ease;
+  background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+  transition: width var(--transition-normal);
+  border-radius: 2px;
 }
 
 .nav-link:hover {
@@ -147,222 +453,480 @@ a {
   width: 100%;
 }
 
-/* =========================================================
-   HEADER / HERO
-========================================================= */
+
+/* ==========================================================================
+   8. COMPONENT: HAMBURGER MENU (Animation)
+   ========================================================================== */
+/* Initially hidden on desktop */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: var(--z-hamburger);
+  position: relative;
+}
+
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  margin: 5px 0;
+  background-color: var(--primary-color);
+  border-radius: 3px;
+  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hamburger Animation State: 'menu-open' (toggled by JS) */
+.hamburger.menu-open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.menu-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.menu-open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+
+/* ==========================================================================
+   9. COMPONENT: MOBILE DRAWER (Liquid Glass Effect)
+   ========================================================================== */
+/* This section handles the complex mobile navigation logic.
+   It is designed to be a vertical drawer that pushes down or overlays.
+*/
+
+@media (max-width: 1024px) {
+  
+  /* Hide Desktop Nav */
+  .nav-menu {
+    display: none;
+  }
+
+  /* Show Hamburger */
+  .hamburger {
+    display: block;
+  }
+
+  /* Mobile Drawer Container */
+  /* We use display: flex but hide via visibility/opacity to allow animations */
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+
+    position: fixed;
+    top: var(--nav-height);
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    
+    width: 90%;
+    max-width: 400px;
+    max-height: 80vh;
+    padding: 25px 0;
+    
+    /* Liquid Glass Effect */
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    
+    border-radius: var(--radius-lg);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    /* Hidden State */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    
+    overflow-y: auto;
+    z-index: var(--z-drawer);
+    
+    transition: 
+      opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+      transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+      visibility 0.4s;
+  }
+
+  /* Active State (Toggled by JS) */
+  .nav-menu.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(10px);
+  }
+
+  /* Mobile Nav Links */
+  .nav-menu li {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-menu .nav-link {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    padding: 12px 24px;
+    width: 85%;
+    text-align: center;
+    border-radius: var(--radius-md);
+    background: transparent;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  /* Mobile Link Hover - Subtle Glass Highlight */
+  .nav-menu .nav-link:hover {
+    background: rgba(50, 140, 193, 0.1);
+    color: var(--secondary-color);
+  }
+
+  /* Animated Flow Line for Mobile (Centered) */
+  .nav-menu .nav-link::after {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    bottom: 8px;
+  }
+
+  .nav-menu .nav-link:hover::after {
+    width: 40%;
+  }
+}
+
+/* Extra Small Mobile Tweaks */
+@media (max-width: 480px) {
+  .nav-menu {
+    width: 95%;
+  }
+}
+
+
+/* ==========================================================================
+   10. HEADER / HERO SECTION
+   ========================================================================== */
 
 .header {
-  height: 90vh;
-  background-size: cover;
-  background-position: center;
-  background-attachment: scroll;
+  height: 100vh;
+  min-height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   text-align: center;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Parallax feel */
+  padding-top: var(--nav-height);
 }
 
+/* Overlay for text readability */
 .header-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(11, 60, 93, 0.65);
+  background: linear-gradient(135deg, rgba(11, 60, 93, 0.85), rgba(11, 60, 93, 0.5));
+  z-index: 1;
 }
 
+/* Content Wrapper */
 .header-content {
   position: relative;
-  z-index: 1;
-  max-width: 850px;
-  padding: 20px;
+  z-index: 2;
+  max-width: 900px;
+  padding: 0 20px;
+  color: #fff;
+  animation: fadeInUp 1s ease-out;
 }
 
 .header-content h1 {
   color: #fff;
-  font-size: 3.6rem;
-  text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  font-size: clamp(2.5rem, 5vw, 4.5rem); /* Responsive font size */
+  margin-bottom: 20px;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  line-height: 1.1;
 }
 
 .header-content p {
-  color: #f1f1f1;
-  font-size: 1.15rem;
-  margin-top: 15px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  margin: 0 auto;
+  max-width: 600px;
 }
 
-/* =========================================================
-   SECTIONS
-========================================================= */
+
+/* ==========================================================================
+   11. SECTION: ABOUT ME (Profile & Typewriter)
+   ========================================================================== */
 
 .section {
   padding: var(--section-padding);
+  position: relative;
 }
 
-.section.light,
-.light-section {
-  background: var(--bg-soft);
+.section.light {
+  background-color: var(--bg-soft);
 }
-
-.section-title {
-  text-align: center;
-  margin-bottom: 50px;
-}
-
-/* =========================================================
-   ABOUT SECTION
-========================================================= */
 
 .about-container {
-  max-width: 1100px;
-  margin: auto;
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 350px 1fr;
   gap: 60px;
   align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
+/* Profile Image Container */
 .about-image {
   width: 320px;
   height: 320px;
   border-radius: 50%;
-  padding: 6px;                 /* white stroke thickness */
-  background: #ffffff;          /* white border */
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 8px;
+  background: var(--bg-light);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  /* Important for the stroke adaptation in dark mode */
+  transition: background 0.3s ease, transform 0.3s ease;
+  margin: 0 auto;
+}
+
+/* Interaction on Profile Image */
+.about-image:hover {
+  transform: scale(1.02);
 }
 
 .about-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;            /* auto crop, no distortion */
+  object-fit: cover;
   border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.05);
 }
 
+/* About Text */
+.about-text {
+  animation: fadeIn 1s ease-out;
+}
+
+.about-text h2 {
+  margin-bottom: 20px;
+}
 
 .about-text p {
-  margin-bottom: 18px;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-medium);
   text-align: justify;
 }
 
-/* Typewriter */
+/* Typewriter Cursor Styling */
 .typewriter {
   display: inline-block;
+  color: var(--primary-color);
   border-right: 3px solid var(--secondary-color);
-  padding-right: 6px;
-  animation: blink 0.75s step-end infinite;
+  padding-right: 5px;
+  animation: blinkCursor 0.75s step-end infinite;
 }
 
-@keyframes blink {
-  50% { border-color: transparent; }
+/* RESPONSIVE: About Section */
+@media (max-width: 900px) {
+  .about-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .about-text p {
+    text-align: left;
+  }
+  
+  .about-image {
+    width: 250px;
+    height: 250px;
+  }
 }
 
-/* =========================================================
-   CARDS (PROJECTS / PUBLICATIONS)
-========================================================= */
+
+/* ==========================================================================
+   12. SECTION: PUBLICATIONS (Cards)
+   ========================================================================== */
 
 .card-grid {
-  max-width: 1200px;
-  margin: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* Card Styles */
 .card {
-  background: #fff;
-  padding: 30px;
-  border-radius: var(--radius);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-  transition: var(--transition);
+  background: var(--bg-card);
+  padding: 35px 30px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
 }
-
-.card {
-  background: #fff;
-  padding: 30px;
-  border-radius: var(--radius);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  -webkit-tap-highlight-color: transparent; /* mobile polish */
-}
-@media (hover: hover) and (pointer: fine) {
-  .card:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 18px 35px rgba(0,0,0,0.15);
-  }
-}
-@media (hover: none) and (pointer: coarse) {
-  .card:active {
-    transform: scale(0.97);
-  }
-
-  .card:focus-visible {
-    transform: scale(1.02);
-    box-shadow: 0 14px 28px rgba(0,0,0,0.18);
-  }
-}
-
 
 .card h3 {
   color: var(--primary-color);
+  font-size: 1.25rem;
+  margin-bottom: 15px;
 }
 
 .card p {
   font-size: 0.95rem;
+  margin-bottom: 0;
+  flex-grow: 1;
 }
 
-/* =========================================================
-   GALLERY
-========================================================= */
+/* Card Hover Effects */
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+
+/* Decorative line on top of cards */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background: var(--secondary-color);
+  transition: width 0.3s ease;
+}
+
+.card:hover::before {
+  width: 100%;
+}
+
+
+/* ==========================================================================
+   13. SECTION: PROJECTS (Cards)
+   ========================================================================== */
+/* Reuses .card-grid and .card from above for consistency */
+
+
+/* ==========================================================================
+   14. SECTION: EXPERIENCE (Timeline/Text)
+   ========================================================================== */
+
+/* For now, using a simple centered text block as requested */
+.experience-text {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-dark);
+  background: var(--bg-light);
+  padding: 40px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+}
+
+
+/* ==========================================================================
+   15. COMPONENT: BLOG CARDS
+   ========================================================================== */
+
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.blog-card img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.blog-source {
+  margin-top: auto;
+  padding-top: 15px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--secondary-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+
+/* ==========================================================================
+   16. SECTION: GALLERY (Grid & Captions)
+   ========================================================================== */
 
 .gallery-grid {
-  max-width: 1400px;
-  margin: auto;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .gallery-item {
+  position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  border-radius: var(--radius);
-  background: #fff;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  border-radius: var(--radius-md);
+  background: var(--bg-dark);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
 }
 
 .gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-@media (hover: hover) {
-  .gallery-item:hover img {
-    transform: scale(1.08);
-  }
+/* Hover Zoom Effect */
+.gallery-item:hover img {
+  transform: scale(1.1);
 }
 
-@media (hover: none) {
-  .gallery-item:active img {
-    transform: scale(1.03);
-  }
-}
-
-
-/* =========================================================
-   SCROLL PROGRESS + BACK TO TOP
-========================================================= */
-
-#scroll-progress {
-  position: fixed;
-  top: 0;
+/* Gallery Caption Overlay */
+.gallery-caption {
+  position: absolute;
+  bottom: 0;
   left: 0;
-  height: 4px;
-  width: 0;
-  background: var(--secondary-color);
-  z-index: 1100;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
 }
+
+.gallery-item:hover .gallery-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ==========================================================================
+   17. COMPONENT: BACK TO TOP BUTTON
+   ========================================================================== */
 
 #backToTop {
   position: fixed;
@@ -371,433 +935,214 @@ a {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: none;
-  background: var(--primary-color);
+  background-color: var(--primary-color);
   color: #fff;
   font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  
   opacity: 0;
-  pointer-events: none;
-  transition: var(--transition);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all var(--transition-normal);
+  
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  z-index: 1500;
 }
 
 #backToTop.visible {
   opacity: 1;
-  pointer-events: auto;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 #backToTop:hover {
-  background: var(--secondary-color);
+  background-color: var(--secondary-color);
+  transform: translateY(-5px);
 }
 
-/* =========================================================
-   FOOTER
-========================================================= */
+/* Mobile Back to Top adjustments */
+@media (max-width: 768px) {
+  #backToTop {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+}
 
-/* =========================================================
-   FOOTER
-========================================================= */
+
+/* ==========================================================================
+   18. FOOTER SECTION
+   ========================================================================== */
 
 footer {
-  background: var(--primary-color);
+  background-color: var(--primary-color);
   color: #eaeaea;
-  padding: 40px 8% 25px; /* Added top padding for better spacing */
-  text-align: center;
-  font-size: 0.9rem;
+  padding: 50px 8%;
+  margin-top: auto;
 }
 
 .footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  text-align: center;
+  gap: 20px;
 }
 
 .social-links {
   display: flex;
-  gap: 25px; /* Space between icons */
-  margin-bottom: 10px;
+  gap: 25px;
 }
 
 .social-links a {
-  color: #eaeaea;
-  font-size: 1.5rem; /* Icon size */
-  transition: var(--transition);
-  display: inline-block;
+  font-size: 1.5rem;
+  color: #a0c4db;
+  transition: var(--transition-fast);
 }
 
-/* Hover Effect */
 .social-links a:hover {
-  color: var(--accent-color); /* Turns yellow/gold on hover */
-  transform: translateY(-3px); /* Moves up slightly */
+  color: var(--accent-color);
+  transform: translateY(-3px);
 }
 
-
-/* =========================================================
-   RESPONSIVE DESIGN
-========================================================= */
-
-/* -------- Tablets & Small Laptops -------- */
-@media (max-width: 900px) {
-
-  h1 {
-    font-size: 2.4rem;
-  }
-
-  h2 {
-    font-size: 1.9rem;
-  }
-
-  .header {
-    height: 70vh;
-  }
-
-  .header-content h1 {
-    font-size: 2.6rem;
-  }
-
-  .about-container {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    text-align: center;
-  }
-
-  .about-image {
-    margin: auto;
-    width: 260px;
-    height: 260px;
-  }
-
-  .about-text p {
+/* Responsive Footer */
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
     text-align: left;
   }
 }
-/* ------- New Modification TABLET (FIXED) ------- */
-@media (max-width: 768px) {
 
-  /* ===============================
-     🔥 MOBILE NAV FIX (REAL FIX)
-  =============================== */
 
-  .hamburger {
-    position: relative;
-    z-index: 1300; /* always above menu */
+/* ==========================================================================
+   19. SYSTEM DARK MODE OVERRIDES (The "Night" Theme)
+   ========================================================================== */
+/* These styles automatically apply when the user's OS is set to Dark Mode.
+   We override CSS variables and specific element styles here.
+*/
+@media (prefers-color-scheme: dark) {
+  
+  :root {
+    /* Dark Mode Colors */
+    --bg-light:      #0f172a;  /* Very dark blue/slate */
+    --bg-soft:       #1e293b;  /* Slightly lighter for sections */
+    --bg-dark:       #020617;  /* Deepest background */
+    --bg-card:       #1e293b;  /* Dark Card background */
+    --bg-glass:      rgba(15, 23, 42, 0.85); /* Dark Glass */
+
+    --text-dark:     #f1f5f9;  /* Light text */
+    --text-medium:   #cbd5e1;  /* Muted text */
+    --text-light:    #94a3b8;  /* Dim text */
+
+    --primary-color: #38bdf8;  /* Bright Blue for Dark Mode */
+    --secondary-color: #60a5fa; /* Lighter Accent */
+    
+    --border-color:  rgba(255, 255, 255, 0.1);
+    --shadow-sm:     0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md:     0 8px 24px rgba(0, 0, 0, 0.4);
   }
 
-  .nav-menu {
-    /* keep menu in DOM but REMOVE from touch flow when hidden */
-   
-    transform: translateY(-10px);
-
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    z-index: 1200;
+  /* -----------------------------------------------------------------------
+     Dark Mode Specific Element Overrides
+     ----------------------------------------------------------------------- */
+  
+  /* Navbar */
+  .navbar {
+    background: rgba(15, 23, 42, 0.9);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
   }
 
-  .nav-menu.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+  /* Mobile Drawer (Dark Liquid Glass) */
+  @media (max-width: 1024px) {
+    .nav-menu {
+      background: rgba(30, 41, 59, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    
+    .nav-menu .nav-link {
+      color: var(--text-dark);
+    }
+    
+    .nav-menu .nav-link:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--primary-color);
+    }
   }
 
-  /* ===============================
-     YOUR EXISTING STYLES (UNCHANGED)
-  =============================== */
-
-  .projects,
-  .experience,
-  .publications {
-    width: 90%;
-    margin: 20px auto;
-    text-align: center;
+  /* Profile Image Stroke Fix */
+  /* Instead of white stroke, we use a dark translucent ring */
+  .about-image {
+    background: linear-gradient(145deg, rgba(56, 189, 248, 0.2), rgba(15, 23, 42, 0.6));
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.1);
   }
 
-  .section-card {
-    margin: 16px auto;
+  .about-image img {
+    border: 2px solid rgba(255, 255, 255, 0.05);
   }
 
-  .slider,
-  .slider img {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
+  /* Experience Box */
+  .experience-text {
+    background: var(--bg-soft);
+    color: var(--text-medium);
   }
 
-  .slider img {
-    height: 200px;
-    object-fit: cover;
-    display: block;
+  /* Footer */
+  footer {
+    background-color: #020617;
+    border-top: 1px solid rgba(255,255,255,0.05);
   }
-
-  .profile-section {
-    text-align: center;
-    padding: 20px;
+  
+  /* Scroll Bar (Ensure Visibility) */
+  #scroll-progress {
+    background: var(--primary-color);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
   }
-
-  .profile-photo {
-    display: block;
-    margin: 0 auto 15px auto;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-  }
-
-  .profile-description {
-    width: 90%;
-    margin: 0 auto;
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-
-  .back-to-top {
-    display: block;
-    position: fixed;
-    bottom: 20px;
-    right: 15px;
-    z-index: 999;
-    font-size: 22px;
+  
+  /* Back to Top */
+  #backToTop {
+    background-color: var(--secondary-color);
+    color: #0f172a;
   }
 }
 
-/* -------- Mobile Phones -------- */
-@media (max-width: 600px) {
+
+/* ==========================================================================
+   20. PRINT STYLES
+   ========================================================================== */
+@media print {
+  .navbar, 
+  #scroll-progress,
+  #backToTop,
+  .social-links {
+    display: none !important;
+  }
 
   body {
-    font-size: 15px;
-  }
-
-  .navbar {
-    padding: 0.8rem 6%;
-  }
-
-  .logo {
-    font-size: 1.2rem;
-  }
-
-  /* Hide menu for now (later add hamburger) */
-
-  .header {
-    height: 65vh;
-  }
-
-
-  .header-content h1 {
-    font-size: 2rem;
-  }
-
-  .header-content p {
-    font-size: 0.95rem;
+    background: #fff;
+    color: #000;
   }
 
   .section {
-    padding: 60px 6%;
-  }
-
-  .card-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .card {
-    padding: 22px;
-  }
-
-  .about-image {
-    width: 220px;
-    height: 220px;
-  }
-
-  footer {
-    padding: 35px 6% 20px;
-  }
-
-  .social-links a {
-    font-size: 1.3rem;
-  }
-.blog-card img {
-    width: 48px;
-    height: 48px;
-  }
-
-  .blog-card h3 {
-    font-size: 1.1rem;
-  }
-
-  .blog-card p {
-    font-size: 0.9rem;
-  }
-    .gallery-grid {
-    gap: 15px;
-  }
-
-  .gallery-item {
-    aspect-ratio: 3 / 2;
-  }
-
-}
-
-/* ===============================
-   Phones (≤480px) – iPhones & large Androids
-================================ */
-
-@media (max-width: 480px) {
-
-  .slider img {
-    height: 160px;
-  }
-
-  .profile-photo {
-    width: 130px;
-    height: 130px;
-  }
-
-  .profile-description {
-    font-size: 0.9rem;
-  }
-
-  .projects,
-  .experience,
-  .publications {
-    width: 94%;
-    margin: 16px auto;
-  }
-
-  .back-to-top {
-    bottom: 16px;
-    right: 12px;
-    font-size: 20px;
-  }
-}
-
-/* ===============================
-   Small phones (≤360px) – compact Android devices
-================================ */
-@media (max-width: 360px) {
-
-  .slider img {
-    height: 140px;
-  }
-
-  .profile-photo {
-    width: 115px;
-    height: 115px;
-  }
-
-  .profile-description {
-    font-size: 0.85rem;
-    line-height: 1.5;
-  }
-
-  .section-card {
-    margin: 12px auto;
-  }
-}
-
-
-
-
-/* ===============================
-   BLOG CARDS
-================================ */
-
-.blog-card {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  color: inherit;
-  position: relative;
-}
-
-.blog-card img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  margin-bottom: 15px;
-}
-
-.blog-card h3 {
-  margin-bottom: 10px;
-}
-
-.blog-card p {
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-
-
-.blog-source {
-  margin-top: auto;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--secondary-color);
-}
-
-/* Hover animation */
-.blog-card:hover {
-  transform: translateY(-8px);
-}
-
-/* ===============================
-   MOBILE HAMBURGER MENU
-================================ */
-
-/* Hide hamburger on desktop */
-.hamburger {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-/* Hamburger lines */
-.hamburger span {
-  display: block;
-  width: 26px;
-  height: 3px;
-  background: var(--primary-color);
-  margin: 5px 0;
-  transition: 0.3s ease;
-}
-
-/* MOBILE ONLY */
-
-/* ===============================
-   MOBILE NAV — FINAL & CLEAN
-================================ */
-@media (max-width: 768px) {
-
-  .hamburger {
-    display: block;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 2000;
-  }
-
-  .navbar {
-    z-index: 1500;
-  }
-
-  .nav-menu {
-    position: fixed;
-    top: 64px;
-    left: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
     padding: 20px 0;
-
-    transform: translateY(-120%);
-    transition: transform 0.35s ease;
-
-    z-index: 1500;
+    page-break-inside: avoid;
   }
 
-  .nav-menu.show {
-    transform: translateY(0);
+  h1, h2, h3 {
+    color: #000;
+    page-break-after: avoid;
+  }
+
+  a {
+    text-decoration: underline;
+    color: #000;
   }
 }
