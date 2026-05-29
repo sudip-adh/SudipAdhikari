@@ -1,270 +1,398 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sudip Adhikari | Electrical Engineer</title>
-
-    <!-- FAVICON by chatgpt-->
-<link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-
-           
-
-<!-- FAVICON 
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">     by chatgpt-->
- <!-- APPLE TOUCH ICON -->
-
+  <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-
-
-  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Main CSS -->
-   <script src="js/main.js" defer></script>
-
-  <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-
-
-  
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
 </head>
-
 <body>
-
-<!-- ===============================
-     SCROLL PROGRESS BAR
-================================ -->
 <div id="scroll-progress"></div>
 
-
-
-
-<!-- ===============================
-     NAVIGATION BAR
-================================ -->
-<nav class="navbar">
-
-  <div class="logo">Sudip</div>
-
-  <!-- 🔥 HAMBURGER (must be BEFORE nav-menu for z-index & click reliability) -->
-  <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-
-  <ul class="nav-menu" id="navMenu">
-    <li><a class="nav-link" href="#about">About</a></li>
-    <li><a class="nav-link" href="#publications">Publications</a></li>
-    <li><a class="nav-link" href="#projects">Projects</a></li>
-    <li><a class="nav-link" href="#experience">Experience</a></li>
-    <li><a class="nav-link" href="blogs.html">Blogs</a></li>
-    <li><a class="nav-link" href="gallery.html">Gallery</a></li>
-  </ul>
-
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <div class="logo">Sudip</div>
+    <ul class="nav-menu" id="navMenu">
+      <li><a class="nav-link" href="#about">About</a></li>
+      <li><a class="nav-link" href="#interests">Interests</a></li>
+      <li><a class="nav-link" href="#projects">Projects</a></li>
+      <li><a class="nav-link" href="#experience">Experience</a></li>
+      <li><a class="nav-link" href="blogs.html">Blogs</a></li>
+      <li><a class="nav-link" href="gallery.html">Gallery</a></li>
+      <li><a class="nav-link nav-cta" href="#contact">Contact</a></li>
+    </ul>
+    <button class="theme-toggle theme-toggle-desktop" id="themeToggle" aria-label="Toggle dark mode">
+      <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
-<div class="menu-backdrop"></div>
+<div class="menu-backdrop" id="menuBackdrop"></div>
 
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-header">
+    <span class="drawer-logo">Sudip</span>
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <nav class="drawer-nav">
+    <a class="drawer-link" href="#about"><i class="fas fa-user"></i><span>About</span></a>
+    <a class="drawer-link" href="#interests"><i class="fas fa-compass"></i><span>Interests</span></a>
+    <a class="drawer-link" href="#projects"><i class="fas fa-code-branch"></i><span>Projects</span></a>
+    <a class="drawer-link" href="#experience"><i class="fas fa-briefcase"></i><span>Experience</span></a>
+    <a class="drawer-link" href="blogs.html"><i class="fas fa-pen-nib"></i><span>Blogs</span></a>
+    <a class="drawer-link" href="gallery.html"><i class="fas fa-images"></i><span>Gallery</span></a>
+    <a class="drawer-link drawer-cta" href="#contact"><i class="fas fa-paper-plane"></i><span>Get in Touch</span></a>
+  </nav>
+  <div class="drawer-footer">
+    <div class="drawer-theme-row">
+      <span class="drawer-theme-label"><i class="fas fa-palette"></i> Appearance</span>
+      <button class="drawer-theme-pill" id="drawerThemeToggle" aria-label="Toggle theme">
+        <span class="pill-option pill-light" data-mode="light"><i class="fas fa-sun"></i> Light</span>
+        <span class="pill-option pill-dark"  data-mode="dark"><i class="fas fa-moon"></i> Dark</span>
+        <span class="pill-thumb"></span>
+      </button>
+    </div>
+  </div>
+</div>
 
-<!-- ===============================
-     HEADER / HERO SECTION
-================================ -->
-<header class="header" style="background-image: url('assets/hero.jpg');">
+<!-- HERO -->
+<header class="header" style="background-image:url('assets/header/hero.jpg')">
   <div class="header-overlay"></div>
   <div class="header-content">
-    <h1>Sudip Adhikari</h1>
-    <p>Electrical Engineering Student • Transmission and Distribution • Renewable Energy</p>
+    <div class="hero-tag animate-fade">Electrical Engineer &bull; Nepal</div>
+    <h1 class="animate-up">Sudip Adhikari</h1>
+    <p class="hero-roles animate-up" id="heroRoles"></p>
+    <div class="hero-btns animate-up">
+      <a href="#about" class="btn btn-primary">Explore Work</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+    <div class="scroll-hint animate-up">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
   </div>
 </header>
 
-<!-- ===============================
-     ABOUT SECTION
-================================ -->
+<!-- ABOUT -->
 <section id="about" class="section">
   <div class="about-container">
-
-    <div class="about-image">
+    <div class="about-image animate">
       <img src="assets/images/profile.jpg" alt="Sudip Adhikari">
+      <div class="about-badge"><i class="fas fa-bolt"></i> EE Student</div>
     </div>
-
-    <div class="about-text">
-      <h2 class="typewriter"></h2>
-      <p>
-        I am an <strong>Electrical Engineering student</strong> with a strong
-        interest in <em>transmission systems, renewable energy, and modern electrical
-        technologies</em>. I enjoy applying engineering fundamentals to
-        real-world problems through academic projects, research, and
-        hands-on technical work.
-      </p>
+    <div class="about-text animate">
+      <p class="section-label">About Me</p>
+      <h2 class="typewriter" data-text="Sudip Adhikari"></h2>
+      <p>I am an <strong>Electrical Engineering student</strong> at Tribhuvan University with a strong interest in <em>transmission systems, renewable energy, and modern electrical technologies</em>. I enjoy applying engineering fundamentals to real-world problems through academic projects, research, and hands-on technical work.</p>
+      <p>As a Class Representative for all 8 semesters and active leader in LOCUS &amp; the Electrical Club, I bridge technical excellence with collaborative leadership.</p>
+      <div class="about-stats">
+        <div class="stat"><span class="stat-num" data-target="8">0</span><span class="stat-label">Semesters as CR</span></div>
+        <div class="stat"><span class="stat-num" data-target="3">0</span><span class="stat-label">Key Projects</span></div>
+        <div class="stat"><span class="stat-num" data-target="4">0</span><span class="stat-label">Active Roles</span></div>
+      </div>
+      <a href="assets/docs/Cr certificate.pdf" target="_blank" class="btn btn-primary"><i class="fas fa-file-pdf"></i> View Certificates</a>
     </div>
-
   </div>
 </section>
 
-<!-- ===============================
-     PUBLICATIONS
-================================ -->
-<section id="publications" class="section light">
-  <div class="section-title">
-    <h2>Publications</h2>
-    <p>Academic and technical research contributions</p>
+<!-- RESEARCH INTERESTS -->
+<section id="interests" class="section light">
+  <div class="section-title animate">
+    <p class="section-label">Curiosity</p>
+    <h2>Research Interests</h2>
+    <p>Areas I am actively exploring, studying, and passionate about</p>
   </div>
-
   <div class="card-grid">
-
-    <a href="javascript:void(0)" class="card">
-      <h3>Power Distribution Optimization</h3>
-      <p>Study on improving efficiency and reliability in electrical distribution networks.</p>
-    </a>
-
-    <a href="javascript:void(0)" class="card">
-      <h3>Renewable Integration in Nepalese Grid</h3>
-      <p>Analysis of challenges and solutions for integrating renewables into the national grid.</p>
-    </a>
-
-    <a href="javascript:void(0)" class="card">
-      <h3>Automation in Electrical Manufacturing</h3>
-      <p>Exploration of automation techniques in modern electrical industries.</p>
-    </a>
-
+    <div class="card animate" style="--d:0ms">
+      <div class="card-icon"><i class="fas fa-network-wired"></i></div>
+      <h3>Power Distribution Systems</h3>
+      <p>Fascinated by how electricity travels from generation to end-users — exploring load balancing, loss reduction, and smart grid technologies that make distribution networks more reliable and efficient.</p>
+      <span class="card-tag">T&amp;D Engineering</span>
+    </div>
+    <div class="card animate" style="--d:100ms">
+      <div class="card-icon"><i class="fas fa-solar-panel"></i></div>
+      <h3>Renewable Energy Integration</h3>
+      <p>Deeply interested in how Nepal can harness its abundant hydro, solar, and wind resources — particularly the technical and policy challenges of weaving renewables into the national grid reliably.</p>
+      <span class="card-tag">Renewable Energy</span>
+    </div>
+    <div class="card animate" style="--d:200ms">
+      <div class="card-icon"><i class="fas fa-microchip"></i></div>
+      <h3>Microgrids &amp; Power Electronics</h3>
+      <p>Intrigued by inverter control strategies, droop mechanisms, and the design of islanded AC microgrids — systems that can operate independently and maintain stability without a central grid connection.</p>
+      <span class="card-tag">Power Electronics</span>
+    </div>
   </div>
 </section>
 
-<!-- ===============================
-     PROJECTS
-================================ -->
+<!-- PROJECTS -->
 <section id="projects" class="section">
-  <div class="section-title">
+  <div class="section-title animate">
+    <p class="section-label">Portfolio</p>
     <h2>Projects</h2>
     <p>Selected academic and technical works</p>
   </div>
-
   <div class="card-grid">
-
-    <a href="javascript:void(0)" class="card">
+    <div class="card animate" style="--d:0ms">
+      <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
       <h3>Industrial Illumination Design</h3>
-      <p>Lighting design based on standards, efficiency, and safety considerations.</p>
-    </a>
-
-    <a href="javascript:void(0)" class="card">
-      <h3>Hydropower Plant Layout Planning</h3>
-      <p>Conceptual design and layout planning of a small hydropower station.</p>
-    </a>
-
-    <a href="javascript:void(0)" class="card">
-      <h3>Power System Protection Study</h3>
-      <p>Analysis of relay coordination and fault protection schemes.</p>
-    </a>
-
+      <p>Lighting design based on international standards, optimized for efficiency and workplace safety in industrial environments.</p>
+      <span class="card-tag">Lighting &amp; Standards</span>
+    </div>
+    <div class="card animate" style="--d:100ms">
+      <div class="card-icon"><i class="fas fa-bolt"></i></div>
+      <h3>Adaptive Droop Control for Parallel Inverters</h3>
+      <p>Research and implementation of adaptive droop control strategies for parallel-connected inverters operating in islanded AC microgrids, improving load sharing and stability.</p>
+      <span class="card-tag">Microgrid &amp; Power Electronics</span>
+    </div>
+    <div class="card animate" style="--d:200ms">
+      <div class="card-icon"><i class="fas fa-seedling"></i></div>
+      <h3>Smart Fertigation System</h3>
+      <p>Sensor-based automated irrigation and fertilization prototype that intelligently monitors soil conditions and delivers precise nutrients, reducing water and fertilizer waste.</p>
+      <span class="card-tag">IoT &amp; Automation</span>
+    </div>
   </div>
 </section>
 
-<!-- ===============================
-     EXPERIENCE
-================================ -->
-<section id="experience" class="section">
+<!-- EXPERIENCE -->
+<section id="experience" class="section light">
   <div class="container">
-    <h2 class="animate">Leadership & Experience</h2>
-    
-    <div class="experience-list">
-
-      <div class="experience-item animate">
-        <a href="https://locus.pcampus.edu.np/" target="_blank" class="logo-link">
-          <img src="assets/logos/locus.png" alt="LOCUS Logo" class="exp-logo">
-        </a>
-        <div class="exp-details">
-          <h3>Electrical Coordinator</h3>
-          <p><strong>LOCUS (Present)</strong></p>
-          <p>Managing electrical engineering events and technical coordination for the national festival.</p>
-          <a href="assets/docs/Locus.pdf" target="_blank" class="view-cert-link">View Certificates <i class="fas fa-file-pdf"></i></a>
-        </div>
-      </div>
-
-      <div class="experience-item animate">
-        <a href="https://electricalclub.pcampus.edu.np/" target="_blank" class="logo-link">
-          <img src="assets/logos/ec.png" alt="Electrical Club Logo" class="exp-logo">
-        </a>
-        <div class="exp-details">
-          <h3>Project Manager</h3>
-          <p><strong>Electrical Club (2081)</strong></p>
-          <p>Executive Committee member for 2024, overseeing technical projects and innovation.</p>
-          <a href="assets/docs/Electrical_club.pdf" target="_blank" class="view-cert-link">View Certificates <i class="fas fa-file-pdf"></i></a>
-        </div>
-        </div>
-      </div>
-
-      <div class="experience-item animate">
-        <a href="assets/docs/Cr certificates.pdf" target="_blank" class="logo-link">
-          <img src="assets/logos/tu_logo.png" alt="TU Logo" class="exp-logo">
-        </a>
-        <div class="exp-details">
-          <h3>Class Representative (CR)</h3>
-          <p><strong>Tribhuvan University (All 8 Semesters)</strong></p>
-          <p>Elected representative for the entire degree; dedicated to student welfare and academic coordination.</p>
-          <a href="assets/docs/Cr certificate.pdf" target="_blank" class="view-cert-link">View Certificates <i class="fas fa-file-pdf"></i></a>
-        </div>
-      </div>
-
-      <div class="experience-item animate">
-        <a href="assets/docs/EH_certificate.jpg" target="_blank" class="logo-link">
-          <img src="assets/logos/EH.jpg" alt="Energy Hackathon 9.0 Logo" class="exp-logo">
-        </a>
-        <div class="exp-details">
-          <h3>Organizer For Energy Hackathon 9.0</h3>
-          <p><strong>LOCUS 2026</strong></p>
-          <p>Organizer for Energy Hackathon 9.0; dedicated to technical coordination and event management to ensure a successful execution.</p>
-          <a href="assets/docs/EH_certificate.jpg" target="_blank" class="view-cert-link">View Certificate <i class="fas fa-image"></i></a>
-        </div>
-      </div>
-
-    </div> </div>
-</section>
-<!-- ===============================
-     FOOTER
-================================ -->
-<footer>
-  <div class="footer-content">
-
-    <div class="social-links">
-      <a href="https://www.facebook.com/sudip.adhikari010/" target="_blank" title="Facebook">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-
-      <a href="https://www.linkedin.com/in/sudip-adhikari-9448a7336/" target="_blank" title="LinkedIn">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-
-      <a href="mailto:sudipadh0410@gmail.com" title="Email">
-        <i class="fas fa-envelope"></i>
-      </a>
-
-      <a href="https://github.com/sudip-adh" target="_blank" title="GitHub">
-        <i class="fab fa-github"></i>
-      </a>
+    <div class="section-title animate">
+      <p class="section-label">Journey</p>
+      <h2>Leadership &amp; Experience</h2>
+      <p>Roles that shaped my engineering career</p>
     </div>
 
-    <p>© 2025 Sudip Adhikari • Electrical Engineering</p>
+    <div class="exp-timeline">
+
+      <div class="exp-entry animate" style="--d:0ms">
+        <div class="exp-logo-col">
+          <a href="https://www.kapower.us/" target="_blank">
+            <div class="exp-logo-wrap glass-card">
+              <img src="assets/logos/k&a.png" alt="K&A Engineering">
+            </div>
+          </a>
+          <div class="exp-line"></div>
+        </div>
+        <div class="exp-body glass-card">
+          <span class="exp-period" style="background:rgba(217,179,16,.15);color:#b8960a;border:1px solid rgba(217,179,16,.3);">April 2026 – Present</span>
+          <h3>Electrical Engineering Intern <span style="font-size:.75rem;font-weight:500;color:var(--secondary);margin-left:.4rem;">🟢 Current</span></h3>
+          <p class="exp-org"><i class="fas fa-map-marker-alt"></i> K&amp;A Engineering — <a href="https://www.kapower.us/" target="_blank" style="color:var(--secondary)">kapower.us</a></p>
+          <p>Gaining hands-on industry experience in electrical engineering, working on real-world power systems projects and contributing to technical design and analysis tasks.</p>
+        </div>
+      </div>
+
+      <div class="exp-entry animate" style="--d:80ms">
+        <div class="exp-logo-col">
+          <a href="https://locus.pcampus.edu.np/" target="_blank">
+            <div class="exp-logo-wrap glass-card">
+              <img src="assets/logos/locus.png" alt="LOCUS">
+            </div>
+          </a>
+          <div class="exp-line"></div>
+        </div>
+        <div class="exp-body glass-card">
+          <span class="exp-period">Present</span>
+          <h3>Electrical Coordinator</h3>
+          <p class="exp-org"><i class="fas fa-map-marker-alt"></i> LOCUS — National Engineering Festival</p>
+          <p>Managing electrical engineering events and technical coordination for one of Nepal's largest engineering festivals, ensuring seamless technical operations.</p>
+          <a href="assets/docs/Locus.pdf" target="_blank" class="cert-link"><i class="fas fa-file-pdf"></i> View Certificate</a>
+        </div>
+      </div>
+
+      <div class="exp-entry animate" style="--d:160ms">
+        <div class="exp-logo-col">
+          <a href="https://electricalclub.pcampus.edu.np/" target="_blank">
+            <div class="exp-logo-wrap glass-card">
+              <img src="assets/logos/ec.png" alt="Electrical Club">
+            </div>
+          </a>
+          <div class="exp-line"></div>
+        </div>
+        <div class="exp-body glass-card">
+          <span class="exp-period">2081 BS</span>
+          <h3>Project Manager</h3>
+          <p class="exp-org"><i class="fas fa-map-marker-alt"></i> Electrical Club, Pulchowk Campus</p>
+          <p>Executive Committee member, overseeing technical projects, workshops, and innovation initiatives for the club's annual programs.</p>
+          <a href="assets/docs/Electrical_club.pdf" target="_blank" class="cert-link"><i class="fas fa-file-pdf"></i> View Certificate</a>
+        </div>
+      </div>
+
+      <div class="exp-entry animate" style="--d:200ms">
+        <div class="exp-logo-col">
+          <a href="assets/docs/Cr certificate.pdf" target="_blank">
+            <div class="exp-logo-wrap glass-card">
+              <img src="assets/logos/tu_logo.png" alt="TU">
+            </div>
+          </a>
+          <div class="exp-line"></div>
+        </div>
+        <div class="exp-body glass-card">
+          <span class="exp-period">All 8 Semesters</span>
+          <h3>Class Representative (CR)</h3>
+          <p class="exp-org"><i class="fas fa-map-marker-alt"></i> Tribhuvan University, IOE</p>
+          <p>Elected representative for the entire BE degree, bridging students and faculty while coordinating academic activities and welfare initiatives.</p>
+          <a href="assets/docs/Cr certificate.pdf" target="_blank" class="cert-link"><i class="fas fa-file-pdf"></i> View Certificates</a>
+        </div>
+      </div>
+
+      <div class="exp-entry animate" style="--d:280ms">
+        <div class="exp-logo-col">
+          <a href="assets/docs/EH_certificate.jpg" target="_blank">
+            <div class="exp-logo-wrap glass-card">
+              <img src="assets/logos/EH.jpg" alt="Energy Hackathon">
+            </div>
+          </a>
+        </div>
+        <div class="exp-body glass-card">
+          <span class="exp-period">LOCUS 2026</span>
+          <h3>Organizer — Energy Hackathon 9.0</h3>
+          <p class="exp-org"><i class="fas fa-map-marker-alt"></i> LOCUS Engineering Festival</p>
+          <p>Led technical coordination and event management for the flagship energy innovation hackathon, ensuring successful execution from planning to delivery.</p>
+          <a href="assets/docs/EH_certificate.jpg" target="_blank" class="cert-link"><i class="fas fa-image"></i> View Certificate</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-title animate">
+      <p class="section-label">Let's Connect</p>
+      <h2>Get in Touch</h2>
+      <p>Have a project or inquiry? Send me a message and I'll reply promptly.</p>
+    </div>
+    <div class="contact-grid">
+
+      <div class="contact-info animate">
+        <div class="contact-info-item">
+          <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <p class="ci-label">Email</p>
+            <a href="mailto:sudipadh0410@gmail.com" class="ci-value">sudipadh0410@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ci-icon"><i class="fab fa-linkedin-in"></i></div>
+          <div>
+            <p class="ci-label">LinkedIn</p>
+            <a href="https://www.linkedin.com/in/sudip-adhikari-9448a7336/" target="_blank" class="ci-value">sudip-adhikari</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ci-icon"><i class="fab fa-github"></i></div>
+          <div>
+            <p class="ci-label">GitHub</p>
+            <a href="https://github.com/sudip-adh" target="_blank" class="ci-value">sudip-adh</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <p class="ci-label">Location</p>
+            <span class="ci-value">Kathmandu, Nepal</span>
+          </div>
+        </div>
+        <div class="contact-social">
+          <a href="https://www.facebook.com/sudip.adhikari010/" target="_blank" class="csoc-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.linkedin.com/in/sudip-adhikari-9448a7336/" target="_blank" class="csoc-btn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:sudipadh0410@gmail.com" class="csoc-btn" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://github.com/sudip-adh" target="_blank" class="csoc-btn" title="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap glass-card animate">
+        <!--
+          WEB3FORMS SETUP (free, 1 minute):
+          1. Go to https://web3forms.com/
+          2. Enter sudipadh0410@gmail.com → click "Create Access Key"
+          3. Copy the key and replace YOUR_WEB3FORMS_KEY below
+          Done — every submission lands directly in your Gmail inbox!
+        -->
+        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
+          <input type="hidden" name="subject" value="New Portfolio Message">
+          <input type="hidden" name="from_name" value="Portfolio Contact Form">
+          <input type="checkbox" name="botcheck" style="display:none">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-name">Your Name</label>
+              <input type="text" id="cf-name" name="name" placeholder="Hari Bahadur" required>
+              <span class="form-err"></span>
+            </div>
+            <div class="form-group">
+              <label for="cf-email">Email Address <span class="form-optional">(optional)</span></label>
+              <input type="email" id="cf-email" name="email" placeholder="hari@example.com">
+              <span class="form-err"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cf-subject">Subject</label>
+            <input type="text" id="cf-subject" name="subject_line" placeholder="Project Collaboration / Research Inquiry" required>
+            <span class="form-err"></span>
+          </div>
+          <div class="form-group">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="5" placeholder="Tell me about your project or inquiry..." required></textarea>
+            <span class="form-err"></span>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full" id="formSubmit">
+            <span class="btn-text"><i class="fas fa-paper-plane"></i>&nbsp; Send Message</span>
+            <span class="btn-loading" style="display:none"><i class="fas fa-circle-notch fa-spin"></i>&nbsp; Sending…</span>
+          </button>
+          <div id="form-feedback" class="form-feedback" style="display:none"></div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-brand">
+      <span class="logo">Sudip</span>
+      <p>Electrical Engineer &bull; Nepal</p>
+    </div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#interests">Interests</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="blogs.html">Blogs</a>
+      <a href="gallery.html">Gallery</a>
+    </div>
+    <div class="social-links">
+      <a href="https://www.facebook.com/sudip.adhikari010/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.linkedin.com/in/sudip-adhikari-9448a7336/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="mailto:sudipadh0410@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/sudip-adh" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Sudip Adhikari &bull; Electrical Engineering, Tribhuvan University</p>
   </div>
 </footer>
 
-<!-- ===============================
-     BACK TO TOP BUTTON
-================================ -->
-<button id="backToTop">↑</button>
-
-<!-- ===============================
-     JS
-================================ -->
-<!-- <script src="js/main.js"></script> -->
-
+<button id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 </body>
 </html>

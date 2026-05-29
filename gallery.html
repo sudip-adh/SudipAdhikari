@@ -1,169 +1,238 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gallery | Personal Website</title>
-
-
-  <!-- FAVICON by chatgpt-->
-<link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-
-           
-
-<!-- FAVICON 
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">     by chatgpt-->
- <!-- APPLE TOUCH ICON -->
-
+  <title>Gallery | Sudip Adhikari</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-
-  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  
-
-  <!-- Main CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/main.js" defer></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
+<div id="scroll-progress"></div>
 
-  <!-- Scroll Progress Bar -->
-  <div id="scroll-progress"></div>
-
-  <!-- NAVBAR -->
- <nav class="navbar">
-  <div class="logo">
-    <a href="index.html">Sudip</a>
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <div class="logo"><a href="index.html">Sudip</a></div>
+    <ul class="nav-menu" id="navMenu">
+      <li><a class="nav-link" href="index.html#about">About</a></li>
+      <li><a class="nav-link" href="index.html#interests">Interests</a></li>
+      <li><a class="nav-link" href="index.html#projects">Projects</a></li>
+      <li><a class="nav-link" href="index.html#experience">Experience</a></li>
+      <li><a class="nav-link" href="blogs.html">Blogs</a></li>
+      <li><a class="nav-link" href="gallery.html">Gallery</a></li>
+      <li><a class="nav-link nav-cta" href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="theme-toggle theme-toggle-desktop" id="themeToggle" aria-label="Toggle dark mode">
+      <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-
-  <button class="hamburger" aria-label="Menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-
-  <ul class="nav-menu">
-    <li><a class="nav-link" href="index.html#about">About</a></li>
-    <li><a class="nav-link" href="index.html#publications">Publications</a></li>
-    <li><a class="nav-link" href="index.html#projects">Projects</a></li>
-    <li><a class="nav-link" href="index.html#experience">Experience</a></li>
-    <li><a class="nav-link" href="blogs.html">Blogs</a></li>
-    <li><a class="nav-link" href="gallery.html">Gallery</a></li>
-  </ul>
 </nav>
+<div class="menu-backdrop" id="menuBackdrop"></div>
 
-
-  <!-- GALLERY HEADER -->
-  <header class="header" style="background-image: url('assets/gallery/img1.jpg');">
-    <div class="header-overlay"></div>
-    <div class="header-content">
-      <h1>Photo Gallery</h1>
-      <p>A glimpse of my academic, technical, and personal moments</p>
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-header">
+    <span class="drawer-logo">Sudip</span>
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i class="fas fa-times"></i></button>
+  </div>
+  <nav class="drawer-nav">
+    <a class="drawer-link" href="index.html#about"><i class="fas fa-user"></i><span>About</span></a>
+    <a class="drawer-link" href="index.html#interests"><i class="fas fa-compass"></i><span>Interests</span></a>
+    <a class="drawer-link" href="index.html#projects"><i class="fas fa-code-branch"></i><span>Projects</span></a>
+    <a class="drawer-link" href="index.html#experience"><i class="fas fa-briefcase"></i><span>Experience</span></a>
+    <a class="drawer-link" href="blogs.html"><i class="fas fa-pen-nib"></i><span>Blogs</span></a>
+    <a class="drawer-link" href="gallery.html"><i class="fas fa-images"></i><span>Gallery</span></a>
+    <a class="drawer-link drawer-cta" href="index.html#contact"><i class="fas fa-paper-plane"></i><span>Get in Touch</span></a>
+  </nav>
+  <div class="drawer-footer">
+    <div class="drawer-theme-row">
+      <span class="drawer-theme-label"><i class="fas fa-palette"></i> Appearance</span>
+      <button class="drawer-theme-pill" id="drawerThemeToggle" aria-label="Toggle theme">
+        <span class="pill-option pill-light" data-mode="light"><i class="fas fa-sun"></i> Light</span>
+        <span class="pill-option pill-dark" data-mode="dark"><i class="fas fa-moon"></i> Dark</span>
+        <span class="pill-thumb"></span>
+      </button>
     </div>
-  </header>
+  </div>
+</div>
 
-  <!-- GALLERY SECTION -->
- <section class="section">
+<!-- HERO -->
+<header class="header" style="background-image:url('assets/gallery/img1.jpg')">
+  <div class="header-overlay"></div>
+  <div class="header-content">
+    <div class="hero-tag animate-fade">A Visual Journey</div>
+    <h1 class="animate-up">Photo Gallery</h1>
+    <p class="animate-up">Academic, technical, and personal moments</p>
+  </div>
+</header>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+  <div class="lightbox-content">
+    <img id="lightboxImg" src="" alt="">
+    <p id="lightboxCaption" class="lightbox-caption"></p>
+  </div>
+  <button class="lightbox-next" id="lightboxNext" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<!-- GALLERY -->
+<section class="section">
   <div class="container">
-    <div class="section-title text-center">
+
+    <div class="section-title animate">
+      <p class="section-label">Moments</p>
       <h2>My Gallery</h2>
-      <p>Moments from my academic and professional journey</p>
+      <p>Click any photo to view fullscreen &bull; Use arrows or drag to browse</p>
     </div>
 
-    <div class="gallery-category mb-3">
-      <h3 class="category-header">Electrical Club</h3>
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="assets/gallery/electrical_club/ec1.jpg" alt="Electrical Club Workshop">
-          <div class="gallery-info">
-            <p class="caption">Honoring Tutor of PLC Workshop.</p>
+    <!-- Electrical Club -->
+    <div class="gallery-category animate">
+      <div class="category-header">
+        <div class="category-header-left">
+          <img src="assets/logos/ec.png" alt="Electrical Club" class="cat-logo">
+          <h3>Electrical Club</h3>
+        </div>
+        <div class="cat-scroll-arrows">
+          <button class="gscroll-btn gscroll-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+          <button class="gscroll-btn gscroll-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+      <div class="gallery-scroll-track" data-group="ec">
+        <div class="gallery-item" data-caption="Honoring Tutor of PLC Workshop." data-group="ec">
+          <img src="assets/gallery/electrical_club/ec1.jpg" alt="PLC Workshop" loading="lazy">
+          <div class="gallery-overlay">
+            <button class="fs-btn" aria-label="View fullscreen"><i class="fas fa-expand"></i></button>
+            <p class="gallery-caption">Honoring Tutor of PLC Workshop.</p>
           </div>
         </div>
-        <div class="gallery-item">
-          <img src="assets/gallery/electrical_club/ec2.jpg" alt="Team Discussion">
-          <div class="gallery-info">
-            <p class="caption">Group Photo on PLC workshop and 3D Printer inaguration.</p>
+        <div class="gallery-item" data-caption="Group Photo on PLC workshop and 3D Printer inauguration." data-group="ec">
+          <img src="assets/gallery/electrical_club/ec2.jpg" alt="Team Discussion" loading="lazy">
+          <div class="gallery-overlay">
+            <button class="fs-btn" aria-label="View fullscreen"><i class="fas fa-expand"></i></button>
+            <p class="gallery-caption">Group Photo on PLC workshop and 3D Printer inauguration.</p>
           </div>
         </div>
-        <div class="gallery-item">
-          <img src="assets/gallery/electrical_club/ec3.jpg" alt="Project Showcase">
-          <div class="gallery-info">
-            <p class="caption">EC as team on First Shekhar memorial Blood Donation Program.</p>
+        <div class="gallery-item" data-caption="EC team on First Shekhar memorial Blood Donation Program." data-group="ec">
+          <img src="assets/gallery/electrical_club/ec3.jpg" alt="Blood Donation" loading="lazy">
+          <div class="gallery-overlay">
+            <button class="fs-btn" aria-label="View fullscreen"><i class="fas fa-expand"></i></button>
+            <p class="gallery-caption">EC team on First Shekhar memorial Blood Donation Program.</p>
           </div>
         </div>
-        <div class="gallery-item">
-          <img src="assets/gallery/electrical_club/ec4.jpg" alt="Project Showcase">
-          <div class="gallery-info">
-            <p class="caption">Supervision on PCB workshop.</p>
+        <div class="gallery-item" data-caption="Supervision on PCB workshop." data-group="ec">
+          <img src="assets/gallery/electrical_club/ec4.jpg" alt="PCB Workshop" loading="lazy">
+          <div class="gallery-overlay">
+            <button class="fs-btn" aria-label="View fullscreen"><i class="fas fa-expand"></i></button>
+            <p class="gallery-caption">Supervision on PCB workshop.</p>
           </div>
         </div>
-        <div class="gallery-item">
-          <img src="assets/gallery/electrical_club/ec5.jpg" alt="Project Showcase">
-          <div class="gallery-info">
-            <p class="caption">PCB workshop Organizer and Mentors.</p>
+        <div class="gallery-item" data-caption="PCB workshop Organizer and Mentors." data-group="ec">
+          <img src="assets/gallery/electrical_club/ec5.jpg" alt="PCB Mentors" loading="lazy">
+          <div class="gallery-overlay">
+            <button class="fs-btn" aria-label="View fullscreen"><i class="fas fa-expand"></i></button>
+            <p class="gallery-caption">PCB workshop Organizer and Mentors.</p>
           </div>
         </div>
-        <div class="gallery-item">
-          <img src="assets/gallery/electrical_club/ec6.jpg" alt="Project Showcase">
-          <div class="gallery-info">
-            <p class="caption">Photo after shoot of EC Talks.</p>
+        <div class="gallery-item" data-caption="Photo after shoot of EC Talks." data-group="ec">
+          <img src="assets/gallery/electrical_club/ec6.jpg" alt="EC Talks" loading="lazy">
+          <div class="gallery-overlay">
+            <button class="fs-btn" aria-label="View fullscreen"><i class="fas fa-expand"></i></button>
+            <p class="gallery-caption">Photo after shoot of EC Talks.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="gallery-category mb-3">
-      <h3 class="category-header">LOCUS</h3>
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="assets/gallery/img4.jpg" alt="LOCUS Exhibition">
-          <div class="gallery-info">
-            <p class="caption">Showcasing innovation at the National Tech Festival.</p>
-          </div>
+    <!-- LOCUS -->
+    <div class="gallery-category animate">
+      <div class="category-header">
+        <div class="category-header-left">
+          <img src="assets/logos/locus.png" alt="LOCUS" class="cat-logo">
+          <h3>LOCUS</h3>
         </div>
-        <div class="gallery-item">
-          <img src="assets/gallery/img5.jpg" alt="Tech Interaction">
-          <div class="gallery-info">
-            <p class="caption">Engaging with industry experts during LOCUS.</p>
-          </div>
+        <div class="cat-scroll-arrows">
+          <button class="gscroll-btn gscroll-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+          <button class="gscroll-btn gscroll-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
         </div>
-        <div class="gallery-item">
-          <img src="assets/gallery/img6.jpg" alt="Award Ceremony">
-          <div class="gallery-info">
-            <p class="caption">Recognizing excellence in engineering projects.</p>
-          </div>
+      </div>
+      <div class="gallery-scroll-track" data-group="lc">
+        <div class="gallery-item" data-caption="Receiving the cerificate from Coordinator." data-group="lc">
+          <img src="assets/gallery/Locus/lc1.jpg" alt="LOCUS Event 1" loading="lazy">
+          <div class="gallery-overlay"><button class="fs-btn"><i class="fas fa-expand"></i></button><p class="gallery-caption">Receiving the cerificate from Coordinator.</p></div>
+        </div>
+        <div class="gallery-item" data-caption="Tutoring the participants in MATLAB and Simulink workshop; one to one session. " data-group="lc">
+          <img src="assets/gallery/Locus/lc2.jpg" alt="LOCUS Event 2" loading="lazy">
+          <div class="gallery-overlay"><button class="fs-btn"><i class="fas fa-expand"></i></button><p class="gallery-caption"> Tutoring the participants in MATLAB and Simulink workshop; one to one session. </p></div>
+        </div>
+        <div class="gallery-item" data-caption="Welcoming Er. Kulman Ghishing Sir." data-group="lc">
+          <img src="assets/gallery/Locus/lc3.jpeg" alt="LOCUS Event 3" loading="lazy">
+          <div class="gallery-overlay"><button class="fs-btn"><i class="fas fa-expand"></i></button><p class="gallery-caption"> Welcoming Er. Kulman Ghishing Sir.</p></div>
+        </div>
+        <div class="gallery-item" data-caption="Stall visit with Hon.Minister." data-group="lc">
+          <img src="assets/gallery/Locus/lc4.jpg" alt="LOCUS Event 4" loading="lazy">
+          <div class="gallery-overlay"><button class="fs-btn"><i class="fas fa-expand"></i></button><p class="gallery-caption"> Stall visit with Hon.Minister.</p></div>
+        </div>
+        <div class="gallery-item" data-caption="A glimpse of  Robo soccer." data-group="lc">
+          <img src="assets/gallery/Locus/lc5.jpg" alt="LOCUS Event 5" loading="lazy">
+          <div class="gallery-overlay"><button class="fs-btn"><i class="fas fa-expand"></i></button><p class="gallery-caption">A glimpse of  Robo soccer.</p></div>
+        </div>
+        <div class="gallery-item" data-caption="An student explaining his project" data-group="lc">
+          <img src="assets/gallery/Locus/lc6.jpg" alt="LOCUS Event 6" loading="lazy">
+          <div class="gallery-overlay"><button class="fs-btn"><i class="fas fa-expand"></i></button><p class="gallery-caption">An student explaining his project</p></div>
+        </div>
+        <div class="gallery-item" data-caption=" Delivering Welcome Speech in Energy Hackathon 9.0" data-group="lc">
+          <img src="assets/gallery/Locus/lc7.jpg" alt="LOCUS Event 7" loading="lazy">
+          <div class="gallery-overlay"><button class="fs-btn"><i class="fas fa-expand"></i></button><p class="gallery-caption"> Delivering Welcome Speech in Energy Hackathon 9.0</p></div>
+        </div>
+        <div class="gallery-item" data-caption="A snip with guest." data-group="lc">
+          <img src="assets/gallery/Locus/lc8.jpg" alt="LOCUS Event 8" loading="lazy">
+          <div class="gallery-overlay"><button class="fs-btn"><i class="fas fa-expand"></i></button><p class="gallery-caption">A snip with guest.</p></div>
+        </div>
+        <div class="gallery-item" data-caption="Locus as honoring dear guest Sugam Pokharel dai ❤️." data-group="lc">
+          <img src="assets/gallery/Locus/lc9.jpg" alt="LOCUS Event 9" loading="lazy">
+          <div class="gallery-overlay"><button class="fs-btn"><i class="fas fa-expand"></i></button><p class="gallery-caption">Locus as honoring dear guest Sugam Pokharel dai ❤️.</p></div>
         </div>
       </div>
     </div>
 
-    <div class="gallery-category">
-      <h3 class="category-header">College Life</h3>
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="assets/gallery/img7.jpg" alt="Engineering Lab">
-          <div class="gallery-info">
-            <p class="caption">Practical sessions in the Power Systems Lab.</p>
-          </div>
+    <!-- College Life -->
+    <div class="gallery-category animate">
+      <div class="category-header">
+        <div class="category-header-left">
+          <img src="assets/logos/tu_logo.png" alt="College Life" class="cat-logo">
+          <h3>College Life</h3>
         </div>
-        <div class="gallery-item">
-          <img src="assets/gallery/img8.jpg" alt="Campus Study">
-          <div class="gallery-info">
-            <p class="caption">Group studies and academic discussions on campus.</p>
-          </div>
+        <div class="cat-scroll-arrows">
+          <button class="gscroll-btn gscroll-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+          <button class="gscroll-btn gscroll-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
         </div>
-        <div class="gallery-item">
-          <img src="assets/gallery/img9.jpg" alt="Field Visit">
-          <div class="gallery-info">
-            <p class="caption">Site visit to a local Transmission Substation.</p>
-          </div>
+      </div>
+      <div class="gallery-scroll-track" data-group="cl">
+        <div class="gallery-item" data-caption="Final photo with project partners and respected professors" data-group="cl">
+          <img src="assets/gallery/College/c1.jpg" alt="Engineering Lab" loading="lazy">
+          <div class="gallery-overlay"><button class="fs-btn"><i class="fas fa-expand"></i></button><p class="gallery-caption">Final photo with project partners and respected professors.</p></div>
+        </div>
+        <div class="gallery-item" data-caption="Group studies and academic discussions on campus." data-group="cl">
+          <img src="assets/gallery/img8.jpg" alt="Campus Study" loading="lazy">
+          <div class="gallery-overlay"><button class="fs-btn"><i class="fas fa-expand"></i></button><p class="gallery-caption">Group studies and academic discussions on campus.</p></div>
+        </div>
+        <div class="gallery-item" data-caption="Site visit to a local Transmission Substation." data-group="cl">
+          <img src="assets/gallery/img9.jpg" alt="Field Visit" loading="lazy">
+          <div class="gallery-overlay"><button class="fs-btn"><i class="fas fa-expand"></i></button><p class="gallery-caption">Site visit to a local Transmission Substation.</p></div>
         </div>
       </div>
     </div>
@@ -171,52 +240,33 @@
   </div>
 </section>
 
-  <!-- BACK TO TOP -->
-  <button id="backToTop">↑</button>
-
-  <!-- FOOTER -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-content">
-    
-    <div class="social-links">
-      <a href="https://www.facebook.com/sudip.adhikari010/" target="_blank" title="Facebook">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      
-      <a href="https://www.linkedin.com/in/sudip-adhikari-9448a7336/" target="_blank" title="LinkedIn">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-
-      <a href="mailto:sudipadh0410@gmail.com" title="Email">
-        <i class="fas fa-envelope"></i>
-      </a>
-
-      <a href="https://github.com/sudip-adh" target="_blank" title="GitHub">
-        <i class="fab fa-github"></i>
-      </a>
+    <div class="footer-brand">
+      <span class="logo"><a href="index.html" style="color:inherit">Sudip</a></span>
+      <p>Electrical Engineer &bull; Nepal</p>
     </div>
-
-    <p>© 2025 Sudip Adhikari • Electrical Engineering</p>
+    <div class="footer-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#interests">Interests</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="blogs.html">Blogs</a>
+      <a href="gallery.html">Gallery</a>
+    </div>
+    <div class="social-links">
+      <a href="https://www.facebook.com/sudip.adhikari010/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.linkedin.com/in/sudip-adhikari-9448a7336/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="mailto:sudipadh0410@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/sudip-adh" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Sudip Adhikari &bull; Electrical Engineering, Tribhuvan University</p>
   </div>
 </footer>
-  <!-- OPTIONAL JS (scroll progress + back to top) -->
-  <script>
-    const progressBar = document.getElementById("scroll-progress");
-    const backToTop = document.getElementById("backToTop");
 
-    window.addEventListener("scroll", () => {
-      const scrollTop = document.documentElement.scrollTop;
-      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const progress = (scrollTop / scrollHeight) * 100;
-      progressBar.style.width = progress + "%";
-
-      backToTop.classList.toggle("visible", scrollTop > 300);
-    });
-
-    backToTop.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  </script>
-
+<button id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 </body>
 </html>
